@@ -1,0 +1,40 @@
+body {
+  font-family: sans-serif;
+}
+section {
+  width: 780px;
+  max-width: 100%;
+  margin: 1em auto 3em;
+}
+h1,
+h2,
+.timer-container {
+  text-align: center;
+}
+.timer-text {
+  font-size: 1.5em;
+  text-align: center;
+}
+.timer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+.timer > div {
+  margin: 7px;
+}
+.timer > div > strong {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ddd;
+  width: 64px;
+  height: 64px;
+  font-size: 2em;
+  line-height: 1;
+  border-radius: 4px;
+}
+.timer > div > span {
+  line-height: 32px;
+}
