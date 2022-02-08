@@ -15,16 +15,16 @@ h2,
   font-size: 1.5em;
   text-align: center;
 }
-.timer {
+.timer-wrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   text-align: center;
 }
-.timer > div {
+.timer-wrapper > div {
   margin: 7px;
 }
-.timer > div > strong {
+.timer-wrapper > div > strong {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,6 +35,6 @@ h2,
   line-height: 1;
   border-radius: 4px;
 }
-.timer > div > span {
+.timer-wrapper > div > span {
   line-height: 32px;
 }
