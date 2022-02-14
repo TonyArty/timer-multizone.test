@@ -4,7 +4,7 @@
 //Date code with Timezone UTC(GMT)+hh:mm :
 /* new Date("yyyy-mm-ddThh:mm:ss+hh:mm"), where T is UTC.
 Set Timezone: +01:00 is Paris Timezone, this is UTC(T)+01:00 */
-const end = new Date("2022-02-19T11:58:59+01:00").getTime();
+const end = new Date("2022-02-19T23:59:59+01:00").getTime();
 
 //Time variables :
 const seconds = 1000;
@@ -61,18 +61,18 @@ const x = setInterval(function () {
     if(!decCache[number]) decCache[number] = number % 100 > 4 && number % 100 < 20 ? 2 : decCases[Math.min(number % 10, 5)];
     return titles[decCache[number]];
   }
-  
+
   //Displaying time units in elements on the page :
   Array.from(unitDays).forEach(
-    (unitDayEl) => (unitDayEl.innerText = decOfNum(Math.floor(difference / days), ['день', 'дня', 'дней']))
+    (unitDayEl) => (unitDayEl.innerText = decOfNum(Math.floor(difference / days), ['day', 'days', 'days']))
   );
   Array.from(unitHours).forEach(
-    (unitHourEl) => (unitHourEl.innerText = decOfNum(Math.floor((difference % days) / hours), ['час', 'часа', 'часов']))
+    (unitHourEl) => (unitHourEl.innerText = decOfNum(Math.floor((difference % days) / hours), ['hour', 'hours', 'hours']))
   );
   Array.from(unitMinutes).forEach(
-    (unitMinuteEl) => (unitMinuteEl.innerText = decOfNum(Math.floor((difference % hours) / minutes), ['минута', 'минуты', 'минут']))
+    (unitMinuteEl) => (unitMinuteEl.innerText = decOfNum(Math.floor((difference % hours) / minutes), ['minute', 'minutes', 'minutes']))
   );
   Array.from(unitSeconds).forEach(
-    (unitSecondEl) => (unitSecondEl.innerText = decOfNum(Math.floor((difference % minutes) / seconds), ['секунда', 'секунды', 'секунд']))
+    (unitSecondEl) => (unitSecondEl.innerText = decOfNum(Math.floor((difference % minutes) / seconds), ['second', 'seconds', 'seconds']))
   );
 }, seconds);
