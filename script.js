@@ -4,23 +4,31 @@
 //Date code with Timezone UTC(GMT)+hh:mm :
 /* new Date("yyyy-mm-ddThh:mm:ss+hh:mm"), where T is UTC.
 Set Timezone: +01:00 is Paris Timezone, this is UTC(T)+01:00 */
-const end = new Date("2022-02-15T23:59:59+01:00").getTime();
+const end = new Date("2022-02-19T11:58:59+01:00").getTime();
 
-//Timer code :
+//Time variables :
 const seconds = 1000;
 const minutes = seconds * 60;
 const hours = minutes * 60;
 const days = hours * 24;
+
+//Elements variables :
 const timerDays = document.getElementsByClassName("timer-days");
 const timerHours = document.getElementsByClassName("timer-hours");
 const timerMinutes = document.getElementsByClassName("timer-minutes");
 const timerSeconds = document.getElementsByClassName("timer-seconds");
+const unitDays = document.getElementsByClassName("unit-days");
+const unitHours = document.getElementsByClassName("unit-hours");
+const unitMinutes = document.getElementsByClassName("unit-minutes");
+const unitSeconds = document.getElementsByClassName("unit-seconds");
 const timerText = document.getElementsByClassName("timer-text");
 
+//Countdown definition and declension of words units of time :
 const x = setInterval(function () {
+
+  //Countdown definition
   let now = new Date().getTime();
   const difference = end - now;
-
   if (difference < 0) {
     clearInterval(x);
     Array.from(timerText).forEach(
@@ -29,18 +37,42 @@ const x = setInterval(function () {
     return;
   }
 
+  //Displaying time in elements on the page :
   Array.from(timerDays).forEach(
-    (dayEl) => (dayEl.innerText = Math.floor(difference / days))
+    (timeDayEl) => (timeDayEl.innerText = Math.floor(difference / days))
   );
   Array.from(timerHours).forEach(
-    (hoursEl) => (hoursEl.innerText = Math.floor((difference % days) / hours))
+    (timeHourEl) => (timeHourEl.innerText = Math.floor((difference % days) / hours))
   );
   Array.from(timerMinutes).forEach(
-    (minutesEl) =>
-      (minutesEl.innerText = Math.floor((difference % hours) / minutes))
+    (timeMinuteEl) =>
+      (timeMinuteEl.innerText = Math.floor((difference % hours) / minutes))
   );
   Array.from(timerSeconds).forEach(
-    (secondsEl) =>
-      (secondsEl.innerText = Math.floor((difference % minutes) / seconds))
+    (timeSecondEl) =>
+      (timeSecondEl.innerText = Math.floor((difference % minutes) / seconds))
+  );
+
+  //Declension of words units of time :
+  var decCache = [],
+      decCases = [2, 0, 1, 1, 1, 2];
+  function decOfNum(number, titles)
+  {
+    if(!decCache[number]) decCache[number] = number % 100 > 4 && number % 100 < 20 ? 2 : decCases[Math.min(number % 10, 5)];
+    return titles[decCache[number]];
+  }
+  
+  //Displaying time units in elements on the page :
+  Array.from(unitDays).forEach(
+    (unitDayEl) => (unitDayEl.innerText = decOfNum(Math.floor(difference / days), ['день', 'дня', 'дней']))
+  );
+  Array.from(unitHours).forEach(
+    (unitHourEl) => (unitHourEl.innerText = decOfNum(Math.floor((difference % days) / hours), ['час', 'часа', 'часов']))
+  );
+  Array.from(unitMinutes).forEach(
+    (unitMinuteEl) => (unitMinuteEl.innerText = decOfNum(Math.floor((difference % hours) / minutes), ['минута', 'минуты', 'минут']))
+  );
+  Array.from(unitSeconds).forEach(
+    (unitSecondEl) => (unitSecondEl.innerText = decOfNum(Math.floor((difference % minutes) / seconds), ['секунда', 'секунды', 'секунд']))
   );
 }, seconds);
